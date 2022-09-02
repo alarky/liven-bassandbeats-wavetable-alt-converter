@@ -2,3 +2,6 @@
 .node-version
 data/
 original.js
+original.html
+.envrc
+*.json
