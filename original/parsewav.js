@@ -1,7 +1,7 @@
-import { WavData } from "./lib/wavdata.js"
-import { logCompressBuffer, logDecompressBuffer } from "./lib/log.js";
-import { BBSoundData } from "./lib/bbsound.js";
-import { createStartMessage, createDataMessage, createEndMessage } from "./lib/sysex.js";
+import { WavData } from "../lib/wavdata.js"
+import { logCompressBuffer, logDecompressBuffer } from "../lib/log.js";
+import { BBSoundData } from "../lib/bbsound.js";
+import { createStartMessage, createDataMessage, createEndMessage } from "../lib/sysex.js";
 import fs from 'fs'
 
 const audioCompressedBuffer = new Int8Array(65536);
@@ -18,7 +18,6 @@ const audioCompressedBuffer = new Int8Array(65536);
     d.setBytes(o);
     if ("RIFF" != d.riffHeader || "WAVE" != d.waveHeader || d.bitRate < 8)
         throw "Please select a wav file";
-        //return void alert("Please select a wav file");
 
     // cycles
     const s = Math.min(parseInt(d.samples.length / e, 10), 256);
@@ -57,23 +56,10 @@ const audioCompressedBuffer = new Int8Array(65536);
             //console.log(" ", a, o, d, 512 * e + a)
             t[512 * e + a] = parseInt(Math.fround(32767 * d), 10)
         }
-        //console.log(t);
-        //throw "";
     }
-
-    // let json = JSON.stringify(t);
-    // fs.writeFileSync("t.json", json);
 
     // compress 16bit int to 8bit int
     logCompressBuffer(audioCompressedBuffer, t, 65536);
-    let json = JSON.stringify(audioCompressedBuffer);
-    fs.writeFileSync("t2.json", json);
-
-    // decompress 8bit int to 16bit int
-    // const deCompressedBuffer = new Int16Array(65536);
-    // logDecompressBuffer(deCompressedBuffer, audioCompressedBuffer, 65536);
-    // json = JSON.stringify(deCompressedBuffer);
-    // fs.writeFileSync("t3.json", json);
 })();
 
 // convert to syx
@@ -87,8 +73,6 @@ const audioCompressedBuffer = new Int8Array(65536);
 
     const r = new BBSoundData(a, audioCompressedBuffer).toBytes();
     console.log(r);
-    let json = JSON.stringify(r);
-    fs.writeFileSync("t4.json", json);
 
     //t = createStartMessage(7, r.byteLength);
     //e = e.concat(Array.from(t));
