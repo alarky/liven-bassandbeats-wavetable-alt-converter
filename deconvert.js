@@ -19,7 +19,6 @@ let msg = [];
 for (let b of syxdata) {
     msg.push(b);
     if (b === 0xF7) {
-        //console.log(msg.length, msg);
         messages.push(msg);
         msg = [];
     }
@@ -59,11 +58,10 @@ for (let i = 0; i < wt.length; i++) {
     wt2[i*4+2] = value;
     wt2[i*4+3] = value;
 }
+//fs.writeFileSync("data/debug.json", JSON.stringify(wt2))
 
 // wav export
 const wav = new WavData();
-wav.fmtID = 1;
-wav.blockSize = 4;
 const wavData = wav.exportWAV(wt2, 44100);
 fs.writeFileSync(output, wavData);
 

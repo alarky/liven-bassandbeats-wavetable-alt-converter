@@ -2,3 +2,4 @@
 .node-version
 data/
 .envrc
+.DS_Store
