@@ -32,7 +32,6 @@ for (let msg of messages) {
         data = data.concat(msg.slice(9, -1));
     }
 }
-console.log(data.slice(-100));
 
 // de convert 87
 let deconverteds = [];
@@ -40,7 +39,6 @@ for (let i = 0; i < data.length / 8; i++) {
     const frame = data.slice(i*8, i*8+8);
     deconverteds = deconverteds.concat(deConvert87(frame, frame.length - 1))
 }
-console.log(deconverteds.slice(-100));
 
 // bb sound data
 const bbs = new BBSoundData("", []);
@@ -60,7 +58,6 @@ for (let i = 0; i < wt.length; i++) {
     wt2[i*4+2] = value;
     wt2[i*4+3] = value;
 }
-//fs.writeFileSync("data/debug.json", JSON.stringify(wt2))
 
 // wav export
 const wav = new WavData();
