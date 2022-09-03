@@ -64,4 +64,4 @@ const wav = new WavData();
 const wavData = wav.exportWAV(wt2, 44100);
 fs.writeFileSync(output, wavData);
 
-console.log("converted");
+console.log(`converted: ${output}`);
