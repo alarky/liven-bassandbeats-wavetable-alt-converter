@@ -1,7 +1,4 @@
 .idea
 .node-version
 data/
-original/original.js
-original/original.html
 .envrc
-*.json
